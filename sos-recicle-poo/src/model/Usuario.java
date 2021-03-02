@@ -19,6 +19,8 @@ public class Usuario {
         this.funcao = funcao;
     }
 
+    
+
     public String getNome() {
         return nome;
     }
@@ -57,6 +59,17 @@ public class Usuario {
 
     public void setFuncao(int funcao) {
         this.funcao = funcao;
+    }
+    
+//    public String cadastrarUsuario() {
+//       
+//        
+//       return "usuario de email: " + email + "cadastrado com sucesso"; 
+//    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nome=" + nome + ", email=" + email + ", endereco=" + endereco.toString() + ", telefone=" + telefone + ", funcao=" + funcao + '}';
     }
     
     

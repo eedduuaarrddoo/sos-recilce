@@ -1,7 +1,7 @@
 package model;
 
 public class UsuarioRecebedor extends Usuario{
-    private int nivel;
+    private int nivel = 0;
 
     public UsuarioRecebedor() {
     }
