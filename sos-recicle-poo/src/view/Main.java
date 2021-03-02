@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.Endereco;
 import model.Usuario;
@@ -14,6 +15,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int opcao;
+        
+        ArrayList<Usuario> listaDeUsuario = new ArrayList<>();
         
         Usuario u = new Usuario();
         Endereco endereco = new Endereco();
@@ -64,7 +67,12 @@ public class Main {
                         u.setFuncao(2);
                     }
                     
-                    System.out.println(u.toString());
+                   
+                    
+                    listaDeUsuario.add(u);
+                    
+                    System.out.println(listaDeUsuario);
+                    break;       
                     
                     
             }
