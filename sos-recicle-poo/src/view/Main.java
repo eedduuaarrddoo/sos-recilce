@@ -8,25 +8,31 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.Endereco;
+import model.Material;
+import model.Missao;
+import model.Status;
 import model.Usuario;
+
 
 public class Main {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        int opcao;
-        
+        int opcao,opcao2,opcao3;
+        String email;
+        String senha;
+        String usuarioLogado;
         ArrayList<Usuario> listaDeUsuario = new ArrayList<>();
         
         Usuario u = new Usuario();
+        Missao m = new Missao ();
         Endereco endereco = new Endereco();
 
         do {
             System.out.println("-------- SOS RECICLE -------- ");
             System.out.println("1 - Cadastrar Usuario");
-            System.out.println("2 - Entrar como usuario fornecedor de material reciclavel");
-            System.out.println("3 - Entrar como usuario recebedor de material reciclavel");
-            System.out.println("4 - Sair");
+            System.out.println("2 - Login");
+            System.out.println("3 - Sair");
             System.out.println("------------------------ ");
             System.out.println("Escolha a opcao desejada: ");
             opcao = s.nextInt();
@@ -40,6 +46,9 @@ public class Main {
                     
                     System.out.println("email: ");
                     u.setEmail(s.next());
+                    
+                    System.out.println("Senha: ");
+                    u.setSenha(s.next());
                     
                     System.out.println("endereço");
                     
@@ -73,11 +82,51 @@ public class Main {
                     
                     System.out.println(listaDeUsuario);
                     break;       
-                    
-                    
+                case 2 : 
+                   
+                    System.out.println("digite  seu Email ");
+                    email = s.next();
+                    System.out.println("digite sua senha");
+                     senha = s.next();
+                     for (int i = 0; i < listaDeUsuario.size(); i++) {
+                        if(listaDeUsuario.get(i).getEmail().contains(email)&& listaDeUsuario.get(i).getSenha().contains(senha)){
+                            
+                            usuarioLogado = email; 
+                            
+                            System.out.println(usuarioLogado);
+                            if(funcao = 1){
+                            System.out.println("-------- MENU do Rebedor -------- ");
+                            System.out.println("1 - CRIAR MISSÃO");
+                            System.out.println("2 - VER MINHAS MISSÕES");
+                            opcao2 = s.nextInt();
+                            switch (opcao2){
+                                    
+                                case 1:
+                                   System.out.println("--------CRIADOR DE MISSÕES-------- "); 
+                                   System.out.println("Nome da missão ");
+                                   m.setNome(s.next());
+                                   System.out.println("Qual o objetivo da missão? ex:(12 taboas para construir um pallet) ");
+                                   m.setObjetivo(s.next());
+                                   System.out.println("Selecione os materiais desejados");
+                                   
+                                   switch(opcao3){
+                                       case 1:
+                                   }
+                            
+                            
+                           
+    
+                            }   
+                            }
+                            
+                            else{}
+                        }else{System.out.println("Usuario nao encontrado");}
+                    }
+                          
+                     
             }
 
-        } while (opcao != 4);
+        } while (opcao != 3);
 
     }
 }

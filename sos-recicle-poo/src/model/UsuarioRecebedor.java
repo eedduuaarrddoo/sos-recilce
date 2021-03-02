@@ -18,7 +18,8 @@ public class UsuarioRecebedor extends Usuario{
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
+    //-----------------------------------------------------------------------------------------------------------
     
-    
+   
     
 }

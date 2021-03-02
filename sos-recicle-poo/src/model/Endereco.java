@@ -5,10 +5,10 @@ public class Endereco {
     private String rua;
     private int numero;
     private String bairro;
-
+    private String cep;
     public Endereco() {
     }
-    private String cep;
+    
 
     public Endereco(String rua, int numero, String bairro, String cep) {
         this.rua = rua;

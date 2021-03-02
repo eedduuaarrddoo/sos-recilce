@@ -7,7 +7,9 @@ public class Usuario {
     private Endereco endereco; 
     private String telefone; 
     private int funcao;
+    private String senha;
 
+  
     public Usuario() {
     }
 
@@ -60,7 +62,13 @@ public class Usuario {
     public void setFuncao(int funcao) {
         this.funcao = funcao;
     }
-    
+      public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 //    public String cadastrarUsuario() {
 //       
 //        
@@ -69,8 +77,8 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "nome=" + nome + ", email=" + email + ", endereco=" + endereco.toString() + ", telefone=" + telefone + ", funcao=" + funcao + '}';
+        return "Usuario{" + "nome=" + nome + ", email=" + email + ", endereco=" + endereco + ", telefone=" + telefone + ", funcao=" + funcao + ", senha=" + senha + '}';
     }
-    
-    
+
+        
 }

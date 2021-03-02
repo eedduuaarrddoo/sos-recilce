@@ -12,15 +12,7 @@ public class Missao {
     public Missao() {
     }
 
-    public Missao(String nome, int pontuacao, Status status, String objetivo, String emailDoCriador, String emailDoRecebedor, Material material) {
-        this.nome = nome;
-        this.pontuacao = pontuacao;
-        this.status = status;
-        this.objetivo = objetivo;
-        this.emailDoCriador = emailDoCriador;
-        this.emailDoRecebedor = emailDoRecebedor;
-        this.material = material;
-    }
+    
 
     public String getNome() {
         return nome;
@@ -77,6 +69,15 @@ public class Missao {
     public void setMaterial(Material material) {
         this.material = material;
     }
-    
-    
+    public boolean criarMissao(String nome, int pontuacao, Status status, String objetivo, String emailDoCriador, String emailDoRecebedor, Material material) {
+        this.nome = nome;
+        this.pontuacao = pontuacao;
+        this.status = status;
+        this.objetivo = objetivo;
+        this.emailDoCriador = emailDoCriador;
+        this.emailDoRecebedor = emailDoRecebedor;
+        this.material = material;
+   return true;
+    }
+  
 }
