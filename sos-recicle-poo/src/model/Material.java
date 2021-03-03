@@ -2,21 +2,19 @@
 package model;
 
 public class Material {
-    private String TipoDoMaterial;
+    private int TipoDoMaterial;
 
     public Material() {
     }
 
-    public Material(String TipoDoMaterial) {
-        this.TipoDoMaterial = TipoDoMaterial;
-    }
-
-    public String getTipoDoMaterial() {
+    public int getTipoDoMaterial() {
         return TipoDoMaterial;
     }
 
-    public void setTipoDoMaterial(String TipoDoMaterial) {
+    public void setTipoDoMaterial(int TipoDoMaterial) {
         this.TipoDoMaterial = TipoDoMaterial;
     }
+
+    
     
 }
