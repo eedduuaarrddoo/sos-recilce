@@ -1,7 +1,7 @@
 package model;
 
 public class UsuarioFornecedor extends Usuario {
-    private int pontuacao = 0;
+    private int pontuacao;
 
     public UsuarioFornecedor() {
     }
