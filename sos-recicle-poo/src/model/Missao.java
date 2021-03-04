@@ -1,6 +1,7 @@
 package model;
 
 public class Missao {
+    private int id;
     private String nome;
     private int pontuacao;
     private Status status;
@@ -69,6 +70,15 @@ public class Missao {
     public void setMaterial(Material material) {
         this.material = material;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     @Override
     public String toString() {
