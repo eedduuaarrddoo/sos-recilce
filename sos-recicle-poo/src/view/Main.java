@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.util.ArrayList;
@@ -12,22 +7,33 @@ import model.Material;
 import model.Missao;
 import model.Status;
 import model.Usuario;
+import model.UsuarioFornecedor;
+import model.UsuarioRecebedor;
 
 public class Main {
 
     public static void main(String[] args) {
+
         Scanner s = new Scanner(System.in);
+
         int opcao, opcao2, opcao3;
+
         String email;
         String senha;
         String usuarioLogado;
-        ArrayList<Usuario> listaDeUsuario = new ArrayList<>();
+
+        ArrayList<UsuarioFornecedor> listaDeUsuarioFornecedor = new ArrayList<>();
+        ArrayList<UsuarioRecebedor> listaDeUsuarioRecebedor = new ArrayList<>();
+
+        ArrayList<Missao> listaDeMissao = new ArrayList<>();
 
         Usuario u = new Usuario();
         Missao m = new Missao();
         Endereco endereco = new Endereco();
         Material material = new Material();
         Status status = new Status();
+        UsuarioFornecedor uf = new UsuarioFornecedor();
+        UsuarioRecebedor ur = new UsuarioRecebedor();
 
         do {
             System.out.println("-------- SOS RECICLE -------- ");
@@ -36,6 +42,7 @@ public class Main {
             System.out.println("3 - Sair");
             System.out.println("------------------------ ");
             System.out.println("Escolha a opcao desejada: ");
+
             opcao = s.nextInt();
 
             switch (opcao) {
@@ -43,43 +50,80 @@ public class Main {
                 case 1:
                     System.out.println("digite os dados para a realização do cadastro");
 
-                    System.out.println("nome: ");
-                    u.setNome(s.next());
-
-                    System.out.println("email: ");
-                    u.setEmail(s.next());
-
-                    System.out.println("Senha: ");
-                    u.setSenha(s.next());
-
-                    System.out.println("endereço");
-
-                    System.out.println("Rua: ");
-                    endereco.setRua(s.next());
-                    System.out.println("Numero: ");
-                    endereco.setNumero(s.nextInt());
-                    System.out.println("Bairro: ");
-                    endereco.setBairro(s.next());
-                    System.out.println("CEP: ");
-                    endereco.setCep(s.next());
-
-                    u.setEndereco(endereco);
-
-                    System.out.println("telefone");
-                    u.setTelefone(s.next());
-
                     System.out.println("digite 1 para ser um Fornecedor de material reciclavel");
                     System.out.println("digite 2 para ser um Recebedor de material reciclavel");
                     int funcao = s.nextInt();
+
                     if (funcao == 1) {
-                        u.setFuncao(1);
+                        System.out.println("nome: ");
+                        uf.setNome(s.next());
+
+                        uf.setPontuacao(0);
+
+                        System.out.println("email: ");
+                        uf.setEmail(s.next());
+
+                        System.out.println("Senha: ");
+                        uf.setSenha(s.next());
+
+                        System.out.println("endereço");
+
+                        System.out.println("Rua: ");
+                        endereco.setRua(s.next());
+                        System.out.println("Numero: ");
+                        endereco.setNumero(s.nextInt());
+                        System.out.println("Bairro: ");
+                        endereco.setBairro(s.next());
+                        System.out.println("CEP: ");
+                        endereco.setCep(s.next());
+
+                        uf.setEndereco(endereco);
+
+                        System.out.println("telefone");
+                        uf.setTelefone(s.next());
+
+                        uf.setFuncao(1);
+
+                        listaDeUsuarioFornecedor.add(uf);
+
+                        System.out.println(listaDeUsuarioFornecedor);
+
                     } else if (funcao == 2) {
-                        u.setFuncao(2);
+
+                        System.out.println("nome: ");
+                        ur.setNome(s.next());
+
+                        ur.setNivel(0);
+
+                        System.out.println("email: ");
+                        ur.setEmail(s.next());
+
+                        System.out.println("Senha: ");
+                        ur.setSenha(s.next());
+
+                        System.out.println("endereço");
+
+                        System.out.println("Rua: ");
+                        endereco.setRua(s.next());
+                        System.out.println("Numero: ");
+                        endereco.setNumero(s.nextInt());
+                        System.out.println("Bairro: ");
+                        endereco.setBairro(s.next());
+                        System.out.println("CEP: ");
+                        endereco.setCep(s.next());
+
+                        ur.setEndereco(endereco);
+
+                        System.out.println("telefone");
+                        ur.setTelefone(s.next());
+
+                        ur.setFuncao(2);
+
+                        listaDeUsuarioRecebedor.add(ur);
+
+                        System.out.println(listaDeUsuarioRecebedor);
+
                     }
-
-                    listaDeUsuario.add(u);
-
-                    System.out.println(listaDeUsuario);
                     break;
 
                 // CASE DO LOGIN
@@ -90,96 +134,122 @@ public class Main {
                     System.out.println("digite sua senha");
                     senha = s.next();
 
-                    for (int i = 0; i < listaDeUsuario.size(); i++) {
-                        if (listaDeUsuario.get(i).getEmail().contains(email) && listaDeUsuario.get(i).getSenha().contains(senha)) {
+                    for (int i = 0; i < listaDeUsuarioFornecedor.size() || i < listaDeUsuarioRecebedor.size(); i++) {
+                        if (listaDeUsuarioFornecedor.get(i).getEmail().contains(email) && listaDeUsuarioFornecedor.get(i).getSenha().contains(senha)) {
 
                             usuarioLogado = email;
 
-                            System.out.println("usuario " +  usuarioLogado + " está logado");
-                            
-                            
-                                if (listaDeUsuario.get(i).getEmail().contains(usuarioLogado)) {
-                                        int funcao1 = listaDeUsuario.get(i).getFuncao();
-                                    
-                                        if (funcao1 == 2) {
-                                        do {
-                                            System.out.println("-------- MENU DO RECEBEDOR -------- ");
-                                            System.out.println("1 - CRIAR MISSÃO");
-                                            System.out.println("2 - VER MINHAS MISSÕES");
-                                            System.out.println("4 - FAZER LOGOUT");
-                                            opcao2 = s.nextInt();
-                                            
-                                            
-                                            switch (opcao2) {
+                            System.out.println("usuario " + usuarioLogado + " está logado");
+
+                            //if (listaDeUsuarioRecebedor.get(i).getEmail() == usuarioLogado) {
+                                do {
+                                    System.out.println("-------- MENU DO RECEBEDOR -------- ");
+                                    System.out.println("1 - CRIAR MISSÃO");
+                                    System.out.println("2 - VER MINHAS MISSÕES");
+                                    System.out.println("4 - FAZER LOGOUT");
+                                    opcao2 = s.nextInt();
+
+                                    switch (opcao2) {
+                                        case 1:
+                                            System.out.println("-------- DIGITE OS DADOS PARA CRIAR UMA MISSÃO -------- ");
+
+                                            m.setId(m.getId() + 1);
+
+                                            System.out.println("Nome da missão ");
+                                            m.setNome(s.next());
+
+                                            System.out.println("Qual o objetivo da missão? ex:(12 taboas para construir um pallet) ");
+                                            m.setObjetivo(s.next());
+
+                                            System.out.println("Selecione os materiais desejados");
+
+                                            System.out.println("1 para aluminio");
+                                            System.out.println("2 para plastico");
+                                            System.out.println("3 para papel/papelão");
+                                            System.out.println("4 para metais ferrosos");
+                                            System.out.println("5 para vidro");
+                                            opcao3 = s.nextInt();
+
+                                            switch (opcao3) {
                                                 case 1:
-                                                    System.out.println("--------CRIADOR DE MISSÕES-------- ");
+                                                    material.setTipoDoMaterial("ALUMINIO");
+                                                    break;
 
-                                                    System.out.println("Nome da missão ");
-                                                    m.setNome(s.next());
+                                                case 2:
+                                                    material.setTipoDoMaterial("PLASTICO");
+                                                    break;
 
-                                                    System.out.println("Qual o objetivo da missão? ex:(12 taboas para construir um pallet) ");
-                                                    m.setObjetivo(s.next());
-
-                                                    System.out.println("Selecione os materiais desejados");
-
-                                                    System.out.println("1 para aluminio");
-                                                    System.out.println("2 para plastico");
-                                                    System.out.println("3 para papel/papelão");
-                                                    System.out.println("4 para metais ferrosos");
-                                                    System.out.println("5 para vidro");
-                                                    opcao3 = s.nextInt();
-
-                                                    switch (opcao3) {
-                                                        case 1:
-                                                            material.setTipoDoMaterial(1);
-                                                            break;
-
-                                                        case 2:
-                                                            material.setTipoDoMaterial(2);
-                                                            break;
-
-                                                        case 3:
-                                                            material.setTipoDoMaterial(3);
-                                                            break;
-                                                        case 4:
-                                                            material.setTipoDoMaterial(4);
-                                                            break;
-                                                        case 5:
-                                                            material.setTipoDoMaterial(5);
-                                                            break;
-                                                    }
-                                                    
-                                                   //setando o status da missao
-                                                    status.setStatus(1);
-                                                    m.setStatus(status);
-                                                   //-------------------------- 
-                                                    System.out.println("digite a pontução para essa missão:");
-                                                    m.setPontuacao(s.nextInt());
-                                                    
-                                                    m.setEmailDoCriador(usuarioLogado);
-                                                    m.setEmailDoRecebedor("");
-                                                    
-                                                    m.toString();
-                                                    
-                                                   
+                                                case 3:
+                                                    material.setTipoDoMaterial("PAPEL/PAPELAO");
+                                                    break;
+                                                case 4:
+                                                    material.setTipoDoMaterial("METAIS FERROSOS");
+                                                    break;
+                                                case 5:
+                                                    material.setTipoDoMaterial("VIDRO");
+                                                    break;
                                             }
-                                        } while (opcao2 != 4);
-                                    } 
-                                    else{
-                                        do {                                            
-                                            System.out.println("-------- MENU DO FORNECEDOR -------- ");
-                                            System.out.println("1 - VISUALIZAR MISSÕES ");
-                                            System.out.println("2 - VER MISSÕES ACEITAS");
-                                            System.out.println("3 - VER MISSÕES CONCLUIDAS");
-                                            System.out.println("4 - FAZER LOGOUT");
-                                            opcao2 = s.nextInt();
-                                        } while (opcao2 != 4);
+
+                                            m.setMaterial(material);
+
+                                            //setando o status da missao
+                                            status.setStatus(0);
+                                            m.setStatus(status);
+                                            //-------------------------- 
+                                            System.out.println("digite a pontução para essa missão:");
+                                            m.setPontuacao(s.nextInt());
+
+                                            m.setEmailDoCriador(usuarioLogado);
+                                            m.setEmailDoRecebedor("");
+
+                                            listaDeMissao.add(m);
+                                            break;
+
+                                        case 2:
+                                            for (int j = 0; j < listaDeMissao.size(); j++) {
+                                                System.out.println("---------------------");
+                                                System.out.println("|");
+                                                System.out.println("| ID: " + listaDeMissao.get(j).getId());
+                                                System.out.println("| NOME: " + listaDeMissao.get(j).getNome());
+                                                System.out.println("| PONTUACAÇÃO: " + listaDeMissao.get(i).getPontuacao());
+                                                System.out.println("| OBJETIVO: " + listaDeMissao.get(j).getObjetivo());
+                                                //n está mostrando os materiais
+                                                System.out.println("| MATERIAL" + listaDeMissao.get(j).getMaterial());
+                                                System.out.println("| EMAIL DE QUEM ACEITOU ESSA MISSÃO: " + listaDeMissao.get(j).getEmailDoRecebedor());
+                                                //n está mostrando os status
+                                                if (listaDeMissao.get(j).getStatus().equals(0)) {
+                                                    System.out.println("| STATUS DA MISSÃO: EM ABERTO");
+                                                }
+                                                if (listaDeMissao.get(j).getStatus().equals(1)) {
+                                                    System.out.println("| STATUS DA MISSÃO: ACEITA ");
+                                                }
+                                                if (listaDeMissao.get(j).getStatus().equals(2)) {
+                                                    System.out.println("| STATUS DA MISSÃO: CONCLUIDA");
+                                                }
+                                                System.out.println("----------------------");
+
+                                            }
+                                            break;
                                     }
+                                } while (opcao2 != 4);
 
-                                }
-                            }
+                            
 
-                         else {
+                        } else if (listaDeUsuarioRecebedor.get(i).getEmail().contains(email) && listaDeUsuarioRecebedor.get(i).getSenha().contains(senha)) {
+                            usuarioLogado = email;
+                            
+                            System.out.println("usuario " + usuarioLogado + " está logado");
+
+                            do {
+                                System.out.println("-------- MENU DO FORNECEDOR -------- ");
+                                System.out.println("1 - VISUALIZAR MISSÕES ");
+                                System.out.println("2 - VER MISSÕES ACEITAS");
+                                System.out.println("3 - VER MISSÕES CONCLUIDAS");
+                                System.out.println("4 - FAZER LOGOUT");
+                                opcao2 = s.nextInt();
+                            } while (opcao2 != 4);
+
+                        } else {
                             System.out.println("Usuario nao encontrado");
                         }
                     }
@@ -189,4 +259,5 @@ public class Main {
         } while (opcao != 3);
 
     }
+
 }
