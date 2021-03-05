@@ -16,7 +16,7 @@ public class Main {
 
         Scanner s = new Scanner(System.in);
 
-        int opcao, opcao2, opcao3;
+        int opcao, opcao2, opcao3, opcao5 = 0;
 
         String email;
         String senha;
@@ -252,7 +252,7 @@ public class Main {
 
                                             System.out.println("DIGITE O ID DA MISSÃO DA QUAL VOCÊ DESEJA MUDAR O STATUS");
                                             int idMissão = s.nextInt();
-                                            System.out.println(" ");
+                                            System.out.println(idMissão);
                                             System.out.println("DIGITE 1 PARA ALTERAR O STATUS PARA 'MISSÃO CONCLUIDA' ");
                                             System.out.println("DIGITE 2 PARA ALTERAR O STATUS PARA 'MISSÃO NÃO CONCUIDA");
                                             int statusMissao = s.nextInt();
@@ -293,9 +293,55 @@ public class Main {
                                 System.out.println("-------- MENU DO FORNECEDOR -------- ");
                                 System.out.println("1 - VISUALIZAR MISSÕES ");
                                 System.out.println("2 - VER MISSÕES ACEITAS");
-                                System.out.println("3 - VER MISSÕES CONCLUIDAS");
+                                System.out.println("3 - VER MISSÕES CONCLUIDAS");                              
                                 System.out.println("4 - FAZER LOGOUT");
                                 opcao2 = s.nextInt();
+
+                                switch (opcao5) {
+                                    case 1:
+
+                                        for (int j = 0; j < listaDeMissao.size(); j++) {
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 0) {
+                                                System.out.println("<^^^^^^^^^^^^^^^^^^^^^^^>");
+                                                System.out.println("| ID: " + listaDeMissao.get(j).getId());
+                                                System.out.println("| NOME: " + listaDeMissao.get(j).getNome());
+                                                System.out.println("| PONTUACAÇÃO: " + listaDeMissao.get(j).getPontuacao());
+                                                System.out.println("| OBJETIVO: " + listaDeMissao.get(j).getObjetivo());
+                                                System.out.println("| MATERIAL: " + listaDeMissao.get(j).getMaterial().getTipoDoMaterial());
+                                                System.out.println("| Email do Fornecedor: " + listaDeMissao.get(j).getEmailDoRecebedor());
+                                                System.out.println("<^^^^^^^^^^^^^^^^^^^^^^^>");
+                                                
+                                                 
+
+                                            }
+                                        } System.out.println("<Digitaivus o ID da missão que o mesmo queira >");
+                                         // listaDeMissao.set; ATRIBUIR O EMAIL DO FORNECEDOR A MISSAO QUE ELE ESCOLHER PELO ID DA MISSÃO
+                                    case 2:
+                                        for (int j = 0; j < listaDeMissao.size(); j++) {
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 1 && usuarioLogado == listaDeMissao.get(j).getEmailDoRecebedor()) {
+                                                System.out.println("<^^^^^^^^^^^^^^^^^^^^^^^>");
+                                                System.out.println("| ID: " + listaDeMissao.get(j).getId());
+                                                System.out.println("| NOME: " + listaDeMissao.get(j).getNome());
+                                                System.out.println("| PONTUACAÇÃO: " + listaDeMissao.get(i).getPontuacao());
+                                                System.out.println("| OBJETIVO: " + listaDeMissao.get(j).getObjetivo());
+                                                System.out.println("| MATERIAL: " + listaDeMissao.get(j).getMaterial().getTipoDoMaterial());
+                                                System.out.println("<^^^^^^^^^^^^^^^^^^^^^^^>");
+                                            }
+                                        }
+
+                                    case 3:
+                                        for (int j = 0; j < listaDeMissao.size(); j++) {
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 2 && usuarioLogado == listaDeMissao.get(j).getEmailDoRecebedor()) {
+                                                System.out.println("<^^^^^^^^^^^^^^^^^^^^^^^>");
+                                                System.out.println("| ID: " + listaDeMissao.get(j).getId());
+                                                System.out.println("| NOME: " + listaDeMissao.get(j).getNome());
+                                                System.out.println("| PONTUACAÇÃO: " + listaDeMissao.get(i).getPontuacao());
+                                                System.out.println("<^^^^^^^^^^^^^^^^^^^^^^^>");
+                                            }
+                                        }
+
+                                        break;
+                                }
                             } while (opcao2 != 4);
 
                         } else {
