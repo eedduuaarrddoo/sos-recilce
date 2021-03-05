@@ -49,6 +49,7 @@ public class Main {
                 // CASE DO CADASTRO
                 case 1:
                     System.out.println("digite os dados para a realização do cadastro");
+                    System.out.println(" ");
 
                     System.out.println("digite 1 para ser um Fornecedor de material reciclavel");
                     System.out.println("digite 2 para ser um Recebedor de material reciclavel");
@@ -142,102 +143,150 @@ public class Main {
                             System.out.println("usuario " + usuarioLogado + " está logado");
 
                             //if (listaDeUsuarioRecebedor.get(i).getEmail() == usuarioLogado) {
-                                do {
-                                    System.out.println("-------- MENU DO RECEBEDOR -------- ");
-                                    System.out.println("1 - CRIAR MISSÃO");
-                                    System.out.println("2 - VER MINHAS MISSÕES");
-                                    System.out.println("4 - FAZER LOGOUT");
-                                    opcao2 = s.nextInt();
+                            do {
+                                System.out.println("-------- MENU DO RECEBEDOR -------- ");
+                                System.out.println("1 - CRIAR MISSÃO");
+                                System.out.println("2 - VER MINHAS MISSÕES");
+                                System.out.println("3 - CONFIRMAR A CONCLUSÃO DE UMA MISSÃO");
+                                System.out.println("4 - FAZER LOGOUT");
+                                opcao2 = s.nextInt();
 
-                                    switch (opcao2) {
-                                        case 1:
-                                            System.out.println("-------- DIGITE OS DADOS PARA CRIAR UMA MISSÃO -------- ");
+                                switch (opcao2) {
+                                    case 1:
+                                        System.out.println("-------- DIGITE OS DADOS PARA CRIAR UMA MISSÃO -------- ");
 
-                                            m.setId(m.getId() + 1);
+                                        m.setId(m.getId() + 1);
 
-                                            System.out.println("Nome da missão ");
-                                            m.setNome(s.next());
+                                        System.out.println("Nome da missão ");
+                                        m.setNome(s.nextLine());
 
-                                            System.out.println("Qual o objetivo da missão? ex:(12 taboas para construir um pallet) ");
-                                            m.setObjetivo(s.next());
+                                        System.out.println("Qual o objetivo da missão? ex:(12 taboas para construir um pallet) ");
+                                        m.setObjetivo(s.nextLine());
 
-                                            System.out.println("Selecione os materiais desejados");
+                                        System.out.println("Selecione os materiais desejados");
 
-                                            System.out.println("1 para aluminio");
-                                            System.out.println("2 para plastico");
-                                            System.out.println("3 para papel/papelão");
-                                            System.out.println("4 para metais ferrosos");
-                                            System.out.println("5 para vidro");
-                                            opcao3 = s.nextInt();
+                                        System.out.println("1 para aluminio");
+                                        System.out.println("2 para plastico");
+                                        System.out.println("3 para papel/papelão");
+                                        System.out.println("4 para metais ferrosos");
+                                        System.out.println("5 para vidro");
 
-                                            switch (opcao3) {
-                                                case 1:
-                                                    material.setTipoDoMaterial("ALUMINIO");
-                                                    break;
+                                        opcao3 = s.nextInt();
 
-                                                case 2:
-                                                    material.setTipoDoMaterial("PLASTICO");
-                                                    break;
+                                        switch (opcao3) {
+                                            case 1:
+                                                material.setTipoDoMaterial("ALUMINIO");
+                                                break;
 
-                                                case 3:
-                                                    material.setTipoDoMaterial("PAPEL/PAPELAO");
-                                                    break;
-                                                case 4:
-                                                    material.setTipoDoMaterial("METAIS FERROSOS");
-                                                    break;
-                                                case 5:
-                                                    material.setTipoDoMaterial("VIDRO");
-                                                    break;
+                                            case 2:
+                                                material.setTipoDoMaterial("PLASTICO");
+                                                break;
+
+                                            case 3:
+                                                material.setTipoDoMaterial("PAPEL/PAPELAO");
+                                                break;
+                                            case 4:
+                                                material.setTipoDoMaterial("METAIS FERROSOS");
+                                                break;
+                                            case 5:
+                                                material.setTipoDoMaterial("VIDRO");
+                                                break;
+                                        }
+
+                                        m.setMaterial(material);
+
+                                        //setando o status da missao
+                                        status.setStatus(0);
+                                        m.setStatus(status);
+                                        //-------------------------- 
+                                        System.out.println("digite a pontução para essa missão:");
+                                        m.setPontuacao(s.nextInt());
+
+                                        m.setEmailDoCriador(usuarioLogado);
+                                        m.setEmailDoRecebedor("");
+
+                                        listaDeMissao.add(m);
+                                        break;
+
+                                    case 2:
+                                        for (int j = 0; j < listaDeMissao.size(); j++) {
+                                            System.out.println("---------------------");
+                                            System.out.println("| ID: " + listaDeMissao.get(j).getId());
+                                            System.out.println("| NOME: " + listaDeMissao.get(j).getNome());
+                                            System.out.println("| PONTUACAÇÃO: " + listaDeMissao.get(i).getPontuacao());
+                                            System.out.println("| OBJETIVO: " + listaDeMissao.get(j).getObjetivo());
+                                            System.out.println("| MATERIAL: " + listaDeMissao.get(j).getMaterial().getTipoDoMaterial());
+
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 0) {
+                                                System.out.println("| STATUS DA MISSÃO: EM ABERTO");
                                             }
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 1) {
+                                                System.out.println("| STATUS DA MISSÃO: EM ANDAMENTO ");
+                                                System.out.println("| EMAIL DE QUEM ACEITOU ESSA MISSÃO: " + listaDeMissao.get(j).getEmailDoRecebedor());
+                                            }
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 2) {
+                                                System.out.println("| STATUS DA MISSÃO: CONCLUIDA");
+                                                System.out.println("| EMAIL DE QUEM ACEITOU ESSA MISSÃO: " + listaDeMissao.get(j).getEmailDoRecebedor());
+                                            }
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 3) {
+                                                System.out.println("| STATUS DA MISSÃO: NÃO CONCLUIDA");
+                                                System.out.println("| EMAIL DE QUEM ACEITOU ESSA MISSÃO: " + listaDeMissao.get(j).getEmailDoRecebedor());
+                                            }
+                                            System.out.println("----------------------");
 
-                                            m.setMaterial(material);
+                                        }
+                                        break;
 
-                                            //setando o status da missao
-                                            status.setStatus(0);
-                                            m.setStatus(status);
-                                            //-------------------------- 
-                                            System.out.println("digite a pontução para essa missão:");
-                                            m.setPontuacao(s.nextInt());
-
-                                            m.setEmailDoCriador(usuarioLogado);
-                                            m.setEmailDoRecebedor("");
-
-                                            listaDeMissao.add(m);
-                                            break;
-
-                                        case 2:
-                                            for (int j = 0; j < listaDeMissao.size(); j++) {
+                                    case 3:
+                                        for (int j = 0; j < listaDeMissao.size(); j++) {
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 1) {
                                                 System.out.println("---------------------");
-                                                System.out.println("|");
                                                 System.out.println("| ID: " + listaDeMissao.get(j).getId());
                                                 System.out.println("| NOME: " + listaDeMissao.get(j).getNome());
                                                 System.out.println("| PONTUACAÇÃO: " + listaDeMissao.get(i).getPontuacao());
                                                 System.out.println("| OBJETIVO: " + listaDeMissao.get(j).getObjetivo());
-                                                //n está mostrando os materiais
-                                                System.out.println("| MATERIAL" + listaDeMissao.get(j).getMaterial());
-                                                System.out.println("| EMAIL DE QUEM ACEITOU ESSA MISSÃO: " + listaDeMissao.get(j).getEmailDoRecebedor());
-                                                //n está mostrando os status
-                                                if (listaDeMissao.get(j).getStatus().equals(0)) {
-                                                    System.out.println("| STATUS DA MISSÃO: EM ABERTO");
-                                                }
-                                                if (listaDeMissao.get(j).getStatus().equals(1)) {
-                                                    System.out.println("| STATUS DA MISSÃO: ACEITA ");
-                                                }
-                                                if (listaDeMissao.get(j).getStatus().equals(2)) {
-                                                    System.out.println("| STATUS DA MISSÃO: CONCLUIDA");
-                                                }
-                                                System.out.println("----------------------");
+                                                System.out.println("| MATERIAL: " + listaDeMissao.get(j).getMaterial().getTipoDoMaterial());
+                                                System.out.println("---------------------");
+                                                System.out.println("");
+                                            }
+
+                                            System.out.println("DIGITE O ID DA MISSÃO DA QUAL VOCÊ DESEJA MUDAR O STATUS");
+                                            int idMissão = s.nextInt();
+                                            System.out.println(" ");
+                                            System.out.println("DIGITE 1 PARA ALTERAR O STATUS PARA 'MISSÃO CONCLUIDA' ");
+                                            System.out.println("DIGITE 2 PARA ALTERAR O STATUS PARA 'MISSÃO NÃO CONCUIDA");
+                                            int statusMissao = s.nextInt();
+
+                                            switch (statusMissao) {
+                                                case 1:
+                                                    for (int k = 0; k < listaDeMissao.size(); k++) {
+                                                        if (listaDeMissao.get(k).getId() == idMissão) {
+                                                            status.setStatus(2);
+                                                            listaDeMissao.get(k).setStatus(status);
+                                                        }
+
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    for (int k = 0; k < listaDeMissao.size(); k++) {
+                                                        if (listaDeMissao.get(k).getId() == idMissão) {
+                                                            status.setStatus(3);
+                                                            listaDeMissao.get(k).setStatus(status);
+                                                        }
+
+                                                    }
+                                                    break;
 
                                             }
-                                            break;
-                                    }
-                                } while (opcao2 != 4);
 
-                            
+                                        }
+
+                                }
+                            } while (opcao2 != 4);
 
                         } else if (listaDeUsuarioRecebedor.get(i).getEmail().contains(email) && listaDeUsuarioRecebedor.get(i).getSenha().contains(senha)) {
                             usuarioLogado = email;
-                            
+
                             System.out.println("usuario " + usuarioLogado + " está logado");
 
                             do {
