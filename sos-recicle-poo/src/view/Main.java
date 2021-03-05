@@ -32,8 +32,8 @@ public class Main {
         Endereco endereco = new Endereco();
         Material material = new Material();
         Status status = new Status();
-        UsuarioFornecedor uf = new UsuarioFornecedor();
-        UsuarioRecebedor ur = new UsuarioRecebedor();
+        
+        
 
         do {
             System.out.println("-------- SOS RECICLE -------- ");
@@ -48,6 +48,8 @@ public class Main {
             switch (opcao) {
                 // CASE DO CADASTRO
                 case 1:
+                    UsuarioFornecedor uf = new UsuarioFornecedor();
+                    
                     System.out.println("digite os dados para a realização do cadastro");
                     System.out.println(" ");
 
@@ -90,7 +92,8 @@ public class Main {
                         System.out.println(listaDeUsuarioFornecedor);
 
                     } else if (funcao == 2) {
-
+                        UsuarioRecebedor ur = new UsuarioRecebedor();
+                        
                         System.out.println("nome: ");
                         ur.setNome(s.next());
 
