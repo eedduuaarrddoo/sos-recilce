@@ -7,7 +7,7 @@ public class Missao {
     private Status status;
     private String objetivo;
     private String emailDoCriador;
-    private String emailDoRecebedor;
+    private String emailDoFornecedor;
     private Material material;
 
     public Missao() {
@@ -55,13 +55,15 @@ public class Missao {
         this.emailDoCriador = emailDoCriador;
     }
 
-    public String getEmailDoRecebedor() {
-        return emailDoRecebedor;
+    public String getEmailDoFornecedor() {
+        return emailDoFornecedor;
     }
 
-    public void setEmailDoRecebedor(String emailDoRecebedor) {
-        this.emailDoRecebedor = emailDoRecebedor;
+    public void setEmailDoFornecedor(String emailDoFornecedor) {
+        this.emailDoFornecedor = emailDoFornecedor;
     }
+
+    
 
     public Material getMaterial() {
         return material;
@@ -82,7 +84,7 @@ public class Missao {
 
     @Override
     public String toString() {
-        return "Missao{" + "nome=" + nome + ", pontuacao=" + pontuacao + ", status=" + status + ", objetivo=" + objetivo + ", emailDoCriador=" + emailDoCriador + ", emailDoRecebedor=" + emailDoRecebedor + ", material=" + material + '}';
+        return "Missao{" + "nome=" + nome + ", pontuacao=" + pontuacao + ", status=" + status + ", objetivo=" + objetivo + ", emailDoCriador=" + emailDoCriador + ", emailDoFornecedor=" + emailDoFornecedor + ", material=" + material + '}';
     }
    
     
