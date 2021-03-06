@@ -343,8 +343,11 @@ public class Main {
                                        
                                     break;     
                                     case 2:
+                                        
+                                        System.out.println(usuarioLogado);
                                         for (int j = 0; j < listaDeMissao.size(); j++) {
-                                            if (listaDeMissao.get(j).getStatus().getStatus() == 1 && listaDeMissao.get(j).getEmailDoFornecedor() == (usuarioLogado)) {
+                                            System.out.println(listaDeMissao.get(j).getEmailDoFornecedor());
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 1 && listaDeMissao.get(j).getEmailDoFornecedor() == usuarioLogado) {
                                                 System.out.println("<^^^^^^^^^^^^^^^^^^^^^^^>");
                                                 System.out.println("| ID: " + listaDeMissao.get(j).getId());
                                                 System.out.println("| NOME: " + listaDeMissao.get(j).getNome());
@@ -357,9 +360,12 @@ public class Main {
                                             }
                                         }
                                     break;
+                                    
                                     case 3:
+                                        System.out.println(usuarioLogado);
                                         for (int j = 0; j < listaDeMissao.size(); j++) {
-                                            if (listaDeMissao.get(j).getStatus().getStatus() == 2 && usuarioLogado == listaDeMissao.get(j).getEmailDoFornecedor()) {
+                                            System.out.println(listaDeMissao.get(j).getEmailDoFornecedor());
+                                            if (listaDeMissao.get(j).getStatus().getStatus() == 2 && listaDeMissao.get(j).getEmailDoFornecedor() == usuarioLogado ) {
                                                 System.out.println("<^^^^^^^^^^^^^^^^^^^^^^^>");
                                                 System.out.println("| ID: " + listaDeMissao.get(j).getId());
                                                 System.out.println("| NOME: " + listaDeMissao.get(j).getNome());
